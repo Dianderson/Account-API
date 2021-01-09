@@ -24,14 +24,18 @@ public class CustomerResource {
         return customerService.save(Customer.of(request));
     }
 
+    @GetMapping("/{id}")
+    public CustomerResponse findById(@PathVariable Long id) {
+        return customerService.findById(id);
+    }
+
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         customerService.delete(id);
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<CustomerResponse> findAll() {
         return customerService.findAll();
     }

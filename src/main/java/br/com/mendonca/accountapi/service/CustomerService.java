@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,11 +19,22 @@ public class CustomerService {
         return CustomerResponse.of(customerRepository.save(customer));
     }
 
+    public CustomerResponse findById(Long id) {
+        return customerRepository
+                .findById(id)
+                .map(CustomerResponse::of)
+                .orElseThrow(() -> new RuntimeException(String.format("Customer with id %s not found", id)));
+    }
+
     public void delete(Long id) {
         customerRepository.deleteById(id);
     }
 
     public List<CustomerResponse> findAll() {
-        return customerRepository.findAll().stream().map(CustomerResponse::of).collect(Collectors.toList());
+        return customerRepository
+                .findAll()
+                .stream()
+                .map(CustomerResponse::of)
+                .collect(Collectors.toList());
     }
 }
