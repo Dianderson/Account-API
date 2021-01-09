@@ -24,7 +24,14 @@ public class CustomerResource {
         return customerService.save(Customer.of(request));
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable Long id) {
+        customerService.delete(id);
+    }
+
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<CustomerResponse> findAll() {
         return customerService.findAll();
     }

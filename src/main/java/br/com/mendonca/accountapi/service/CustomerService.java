@@ -20,6 +20,10 @@ public class CustomerService {
         return CustomerResponse.of(customerRepository.save(customer));
     }
 
+    public void delete(Long id) {
+        customerRepository.deleteById(id);
+    }
+
     public List<CustomerResponse> findAll() {
         return customerRepository.findAll().stream().map(CustomerResponse::of).collect(Collectors.toList());
     }
