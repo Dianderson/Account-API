@@ -6,6 +6,10 @@ import br.com.mendonca.accountapi.resource.dto.response.CustomerResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
@@ -14,5 +18,9 @@ public class CustomerService {
 
     public CustomerResponse save(Customer customer) {
         return CustomerResponse.of(customerRepository.save(customer));
+    }
+
+    public List<CustomerResponse> findAll() {
+        return customerRepository.findAll().stream().map(CustomerResponse::of).collect(Collectors.toList());
     }
 }

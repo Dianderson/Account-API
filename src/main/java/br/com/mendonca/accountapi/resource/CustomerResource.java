@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,4 +24,8 @@ public class CustomerResource {
         return customerService.save(Customer.of(request));
     }
 
+    @GetMapping
+    public List<CustomerResponse> findAll() {
+        return customerService.findAll();
+    }
 }
