@@ -2,6 +2,7 @@ package br.com.mendonca.accountapi.resource;
 
 import br.com.mendonca.accountapi.repository.model.Customer;
 import br.com.mendonca.accountapi.resource.dto.request.CreateCustomerRequest;
+import br.com.mendonca.accountapi.resource.dto.request.UpdateCustomerRequest;
 import br.com.mendonca.accountapi.resource.dto.response.CustomerResponse;
 import br.com.mendonca.accountapi.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,10 @@ public class CustomerResource {
         return customerService.findById(id);
     }
 
-
+    @PutMapping("/{id}")
+    public CustomerResponse update(@PathVariable Long id, @RequestBody @Valid UpdateCustomerRequest request) {
+        return customerService.update(Customer.of(id, request));
+    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

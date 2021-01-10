@@ -2,6 +2,7 @@ package br.com.mendonca.accountapi.service;
 
 import br.com.mendonca.accountapi.repository.CustomerRepository;
 import br.com.mendonca.accountapi.repository.model.Customer;
+import br.com.mendonca.accountapi.resource.dto.request.UpdateCustomerRequest;
 import br.com.mendonca.accountapi.resource.dto.response.CustomerResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,9 @@ public class CustomerService {
                 .orElseThrow(() -> new RuntimeException(String.format("Customer with id %s not found", id)));
     }
 
-
+    public CustomerResponse update(Customer customer) {
+        return CustomerResponse.of(customerRepository.save(customer));
+    }
 
     public void delete(Long id) {
         customerRepository.deleteById(id);
