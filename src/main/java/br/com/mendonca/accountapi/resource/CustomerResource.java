@@ -29,6 +29,8 @@ public class CustomerResource {
         return customerService.findById(id);
     }
 
+
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {

@@ -26,6 +26,8 @@ public class CustomerService {
                 .orElseThrow(() -> new RuntimeException(String.format("Customer with id %s not found", id)));
     }
 
+
+
     public void delete(Long id) {
         customerRepository.deleteById(id);
     }
