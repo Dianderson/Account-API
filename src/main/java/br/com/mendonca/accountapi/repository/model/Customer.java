@@ -2,7 +2,6 @@ package br.com.mendonca.accountapi.repository.model;
 
 import br.com.mendonca.accountapi.resource.dto.request.CreateCustomerRequest;
 import br.com.mendonca.accountapi.resource.dto.request.UpdateCustomerRequest;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -44,8 +43,6 @@ public class Customer {
         customer.setId(id);
         customer.setName(request.getName());
         customer.setEmail(request.getEmail());
-        customer.setCpf(request.getCpf());
-        customer.setBirthDate(request.getBirthDate());
         return customer;
     }
 }
